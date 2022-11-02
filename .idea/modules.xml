@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Minimum Task.iml" filepath="$PROJECT_DIR$/.idea/Minimum Task.iml" />
-      <module fileurl="file://$PROJECT_DIR$/consumer/consumer.iml" filepath="$PROJECT_DIR$/consumer/consumer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/producer/producer.iml" filepath="$PROJECT_DIR$/producer/producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab2/aggregator/aggregator.iml" filepath="$PROJECT_DIR$/Lab2/aggregator/aggregator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab2/consumer/consumer.iml" filepath="$PROJECT_DIR$/Lab2/consumer/consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab1/consumer/consumer (1).iml" filepath="$PROJECT_DIR$/Lab1/consumer/consumer (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab2/producer/producer.iml" filepath="$PROJECT_DIR$/Lab2/producer/producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab1/producer/producer (1).iml" filepath="$PROJECT_DIR$/Lab1/producer/producer (1).iml" />
     </modules>
   </component>
 </project>

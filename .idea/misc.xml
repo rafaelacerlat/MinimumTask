@@ -5,6 +5,11 @@
       <list>
         <option value="$PROJECT_DIR$/consumer/pom.xml" />
         <option value="$PROJECT_DIR$/producer/pom.xml" />
+        <option value="$PROJECT_DIR$/Lab2/producer/pom.xml" />
+        <option value="$PROJECT_DIR$/Lab2/consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/Lab2/aggregator/pom.xml" />
+        <option value="$PROJECT_DIR$/Lab1/consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/Lab1/producer/pom.xml" />
       </list>
     </option>
   </component>
