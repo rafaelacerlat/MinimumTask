@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class AggregatorService implements Runnable{
 
     private BlockingQueue<MedicalAppointment> producerQueue = Controller.getProducerQueue();
-    private BlockingQueue<MedicalAppointment> consumerQueue = Controller.getProducerQueue();
+    private BlockingQueue<MedicalAppointment> consumerQueue = Controller.getConsumerQueue();
 
     private final ReentrantLock mutex = new ReentrantLock();
 
@@ -41,13 +41,11 @@ public class AggregatorService implements Runnable{
 
     }
 
-
     public void sendToProducer(MedicalAppointment appointment){
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<MedicalAppointment> requestBody = new HttpEntity<>(appointment);
         restTemplate.postForObject("http://localhost:8080/confirmation", requestBody, MedicalAppointment.class);
     }
-
 
     public void sendToConsumer(MedicalAppointment appointment){
         RestTemplate restTemplate = new RestTemplate();

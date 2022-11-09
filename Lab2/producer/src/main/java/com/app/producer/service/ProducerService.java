@@ -14,22 +14,34 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 @Slf4j
 public class ProducerService implements Runnable {
 
+    private final ReentrantLock mutex = new ReentrantLock();
+
     @Override
     public void run() {
         while (true) {
             try {
+                mutex.tryLock();
 
                 List<DoctorAvailability> availabilityList = getAvailable();
-                MedicalAppointment appointment = generateAppointment(generatePatient(), availabilityList);
 
-                sendAppointmentRequest(appointment);
+                if (availabilityList != null) {
+                    log.info("Doctors' Availability list: {}", availabilityList.toString());
 
-                log.info("Sent a medical appointment request");
+                    MedicalAppointment appointment = generateAppointment(generatePatient(), availabilityList);
+
+                    sendAppointmentRequest(appointment);
+
+                    log.info("Sent a medical appointment request");
+                }else {
+                    log.info("There are no available doctors!");
+                }
+                mutex.unlock();
                 Thread.sleep(5000);
 
             } catch (Exception e) {
