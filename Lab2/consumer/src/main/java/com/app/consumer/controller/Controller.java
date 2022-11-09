@@ -1,6 +1,5 @@
 package com.app.consumer.controller;
 
-import com.app.consumer.ConsumerApplication;
 import com.app.consumer.entity.MedicalAppointment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +24,7 @@ public class Controller {
     public void post(@RequestBody MedicalAppointment appointment) throws InterruptedException {
 
         appointmentsQueue.put(appointment);
-        log.info("Received the request to consumer! The medical appointment was made for:",
+        log.info("Received the request to consumer! The medical appointment was made for: {}, {}",
                 appointment.getDate(), appointment.getTime());
     }
 

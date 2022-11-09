@@ -13,11 +13,7 @@ public class Controller {
     @PostMapping("/confirmation")
     public void post(@RequestBody MedicalAppointment appointment) {
         log.info("Received the medical appointment confirmation from aggregator! " +
-                "\n The appointment has the following details: ", appointment.toString());
+                "\n The appointment has the following details: {} ", appointment.toString());
     }
-
-
-
-
 
 }

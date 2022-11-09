@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -37,7 +38,7 @@ public class Controller {
     @PostMapping("/available")
     public void postAvailability(@RequestBody List<DoctorAvailability> doctorAvailability ) {
 
-        this.doctorAvailability = doctorAvailability;
+        this.doctorAvailability = new ArrayList<>(doctorAvailability);
         log.info("Received the doctors availability schedule from consumer (hospital management system)");
     }
 
