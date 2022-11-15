@@ -1,5 +1,6 @@
 package com.app.consumer;
 
+import com.app.consumer.entity.Availability;
 import com.app.consumer.entity.DoctorAvailability;
 import com.app.consumer.entity.MedicalAppointment;
 import com.app.consumer.service.ConsumerService;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
@@ -25,7 +27,7 @@ public class ConsumerApplication {
         try {
             availabilityList = objectMapper.readValue(new File("C:\\Users\\User\\Desktop\\FAF\\" +
                     "FAF-sem5\\Network programming (PR)\\Minimum Task\\Lab2\\consumer\\src\\main\\java\\" +
-                    "com\\app\\consumer\\resources\\availability.json"), new TypeReference<List<DoctorAvailability>> () {});
+                    "com\\app\\consumer\\resources\\availability.json"), new TypeReference<> () {});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
