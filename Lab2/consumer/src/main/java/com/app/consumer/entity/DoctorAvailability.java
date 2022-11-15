@@ -1,9 +1,8 @@
 package com.app.consumer.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import java.util.List;
 
 @Setter

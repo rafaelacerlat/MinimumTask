@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
@@ -31,42 +32,47 @@ public class ConsumerService implements Runnable {
 
                 availabilityList = ConsumerApplication.getAvailabilityList();
                 sendDoctorAvailability(availabilityList);
-
-                MedicalAppointment appointment = appointmentsQueue.take();
-                String timeSlotToRemove = null;
-                Availability byDateAvailability = null;
-                DoctorAvailability doctorAvailability = null;
-
-                for (DoctorAvailability availability : availabilityList) {
-                    if (availability.getDoctorName().equals(appointment.getDoctorName())) {
-                        doctorAvailability = availability;
-                        byDateAvailability =
-                                availability.getAvailability().stream().
-                                        filter(e -> e.getDate().equals(appointment.getDate())).findAny().get();
-                        timeSlotToRemove = byDateAvailability.getTime().stream().
-                                filter(e -> e.equals(appointment.getTime())).findAny().get();
-                    }
+                if(!availabilityList.isEmpty()) {
+                    MedicalAppointment appointment = appointmentsQueue.take();
+                    updateAvailability(appointment);
+                    sendAppointmentConfirmation(appointment);
                 }
-
-                // in case this is the doctor's last availability
-                if (doctorAvailability.getAvailability().size() < 2){
-                    ConsumerApplication.deleteDoctor(doctorAvailability.getDoctorName());
-                }
-                // in case this time slot was the last for the specified date
-                else if (byDateAvailability.getTime().size() < 2) {
-                    ConsumerApplication.deleteDate(appointment, byDateAvailability.getDate());
-                }
-                else{
-                    ConsumerApplication.deleteTimeSlot(appointment, timeSlotToRemove);
-                }
-
-                sendAppointmentConfirmation(appointment);
 
                 mutex.unlock();
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    public void updateAvailability(MedicalAppointment appointment){
+
+        String timeSlotToRemove = null;
+        Availability byDateAvailability = null;
+        DoctorAvailability doctorAvailability = null;
+
+        for (DoctorAvailability availability : availabilityList) {
+            if (availability.getDoctorName().equals(appointment.getDoctorName())) {
+                doctorAvailability = availability;
+                byDateAvailability =
+                        availability.getAvailability().stream().
+                                filter(e -> e.getDate().equals(appointment.getDate())).findAny().get();
+                timeSlotToRemove = byDateAvailability.getTime().stream().
+                        filter(e -> e.equals(appointment.getTime())).findAny().get();
+            }
+        }
+
+        // in case this is the doctor's last availability
+        if (doctorAvailability.getAvailability().size() < 2){
+            ConsumerApplication.deleteDoctor(doctorAvailability.getDoctorName());
+        }
+        // in case this time slot was the last for the specified date
+        else if (byDateAvailability.getTime().size() < 2) {
+            ConsumerApplication.deleteDate(appointment, byDateAvailability.getDate());
+        }
+        else{
+            ConsumerApplication.deleteTimeSlot(appointment, timeSlotToRemove);
         }
     }
 
