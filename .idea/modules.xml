@@ -4,10 +4,13 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Minimum Task.iml" filepath="$PROJECT_DIR$/.idea/Minimum Task.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab2/aggregator/aggregator.iml" filepath="$PROJECT_DIR$/Lab2/aggregator/aggregator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab2.1/aggregator/aggregator (1).iml" filepath="$PROJECT_DIR$/Lab2.1/aggregator/aggregator (1).iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab2/consumer/consumer.iml" filepath="$PROJECT_DIR$/Lab2/consumer/consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab1/consumer/consumer (1).iml" filepath="$PROJECT_DIR$/Lab1/consumer/consumer (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab2.1/consumer/consumer (2).iml" filepath="$PROJECT_DIR$/Lab2.1/consumer/consumer (2).iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab2/producer/producer.iml" filepath="$PROJECT_DIR$/Lab2/producer/producer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab1/producer/producer (1).iml" filepath="$PROJECT_DIR$/Lab1/producer/producer (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab2.1/producer/producer (2).iml" filepath="$PROJECT_DIR$/Lab2.1/producer/producer (2).iml" />
     </modules>
   </component>
 </project>
